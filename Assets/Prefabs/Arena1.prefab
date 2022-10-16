@@ -112,6 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 3723275193977195790}
   spawnPointController: {fileID: 1537321907680208813}
+  ricochetObjects:
+  - {fileID: 2128483507681375133, guid: e4762d2f911fb7a4cae2c385202aa2b5, type: 3}
+  - {fileID: 4895656750279723461, guid: 4cc6c13bf0035004a98ee1dee68fc0d7, type: 3}
+  - {fileID: 1610077684979903113, guid: f52d324250ffa1e468d4cf9b3929edf2, type: 3}
 --- !u!1 &1826703267421020266
 GameObject:
   m_ObjectHideFlags: 0

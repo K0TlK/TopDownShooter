@@ -11,12 +11,15 @@ namespace Bow
         [SerializeField] private CapsuleCollider capsuleCollider;
         [SerializeField] private GameObject trail;
         [SerializeField] private float speed = 5.0f;
+        [SerializeField] private Rigidbody rb;
         private bool isActive = false;
+        private int ricochetCount = 2;
 
         private void Awake()
         {
             trail.SetActive(false);
             AnimOpen();
+            rb.isKinematic = true;
         }
 
         private void Update()
@@ -38,6 +41,7 @@ namespace Bow
         {
             isActive = true;
             StartCoroutine(ActiveCollider());
+            rb.isKinematic = false;
         }
 
         private void FlightForward()
@@ -65,6 +69,17 @@ namespace Bow
                 return;
             }
         }
-    }
 
+        public void Ricochet(Vector3 bounceDirection)
+        {
+            ricochetCount--;
+            if (ricochetCount == 0)
+            {
+                Destroy(gameObject, 1f);
+            }
+            Vector3 tmp = Quaternion.LookRotation(bounceDirection, Vector3.up).eulerAngles;
+            tmp.x = 0;
+            transform.rotation = Quaternion.Euler(tmp);
+        }
+    }
 }

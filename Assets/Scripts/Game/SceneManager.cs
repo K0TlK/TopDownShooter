@@ -46,6 +46,7 @@ namespace Game
             arena.SpawnPoints.Reload();
             player.transform.position = arena.SpawnPoints.GetFreePoint().position;
             enemy.transform.position = arena.SpawnPoints.GetFreePoint().position;
+            arena.SpawnObjects();
         }
     }
 }
