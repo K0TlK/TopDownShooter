@@ -20,7 +20,7 @@ namespace Player
             {
                 navAgent.SetDestination(target.position);
                 transform.LookAt(target);
-                tmp.ActiveBow();
+                //tmp.ActiveBow();
             }
             else
             {

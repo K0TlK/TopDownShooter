@@ -3,21 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArrowRemover : Singleton<ArrowRemover>
+namespace Bow
 {
-    private void OnTriggerExit(Collider other)
+    public class ArrowRemover : Singleton<ArrowRemover>
     {
-        if (other.CompareTag("Arrow"))
+        private void OnTriggerExit(Collider other)
         {
-            Destroy(other.gameObject, 2.0f);
+            if (other.CompareTag("Arrow"))
+            {
+                Destroy(other.gameObject, 2.0f);
+            }
         }
-    }
 
-    public void Clear()
-    {
-        foreach (var arrow in GetComponentsInChildren<ArrowController>())
+        public void Clear()
         {
-            Destroy(arrow.gameObject, 0.5f);
+            foreach (var arrow in GetComponentsInChildren<ArrowController>())
+            {
+                Destroy(arrow.gameObject, 0.5f);
+            }
         }
     }
 }
