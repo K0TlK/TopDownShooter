@@ -2,32 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace CameraController
 {
-    [SerializeField] private Transform targetPosition;
-    [SerializeField] private Transform targetRotation;
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float xRotate = 30f;
-
-    private void LateUpdate()
+    public class CameraController : MonoBehaviour
     {
-        if (!targetPosition) return;
-        if (!targetRotation) return;
+        [SerializeField] private Transform targetPosition;
+        [SerializeField] private Transform targetRotation;
+        [SerializeField] private float speed = 10f;
+        [SerializeField] private float xRotate = 30f;
+        private bool isFixed = false;
 
-        transform.position = Vector3.Lerp(transform.position, targetPosition.position, Time.deltaTime * speed);
+        private void Awake()
+        {
+            transform.position = targetPosition.position;
+            transform.rotation = targetRotation.rotation;
+        }
 
-        Vector3 tmp = targetRotation.rotation.eulerAngles;
-        tmp.x = xRotate;
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(tmp), Time.deltaTime * speed);
-    }
+        private void LateUpdate()
+        {
+            if (isFixed)
+            {
+                if (!targetPosition) return;
+                if (!targetRotation) return;
 
-    public void SetTarget(Transform target)
-    {
-        this.targetPosition = target;
-    }
+                transform.position = Vector3.Lerp(transform.position, targetPosition.position, Time.deltaTime * speed);
 
-    public void SetTargetRotation(Transform target)
-    {
-        this.targetRotation = target;
+                Vector3 tmp = targetRotation.rotation.eulerAngles;
+                tmp.x = xRotate;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(tmp), Time.deltaTime * speed);
+            }
+        }
+
+        public void SetTarget(Transform target)
+        {
+            SetTargetPosition(target);
+            SetTargetRotation(target);
+        }
+
+        public void SetTargetPosition(Transform target)
+        {
+            this.targetPosition = target;
+        }
+
+        public void SetTargetRotation(Transform target)
+        {
+            this.targetRotation = target;
+        }
     }
 }
