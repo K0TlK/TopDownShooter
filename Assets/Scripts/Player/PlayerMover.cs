@@ -9,13 +9,7 @@ namespace Player
         [SerializeField] private Joystick joystickMove;
         [SerializeField] private Joystick joystickArrow;
         [SerializeField] private float speed = 3f;
-
-        private NavMeshAgent navAgent;
-
-        private void Start()
-        {
-            navAgent = GetComponent<NavMeshAgent>();
-        }
+        [SerializeField] private NavMeshAgent navAgent;
 
         private void Update()
         {
@@ -28,6 +22,16 @@ namespace Player
                     new Vector3(joystickArrow.Direction.x, 0, joystickArrow.Direction.y), Vector3.up);
                 transform.rotation = rotation;
             }
+        }
+
+        public void Active()
+        {
+            navAgent.enabled = true;
+        }
+
+        public void Deactive()
+        {
+            navAgent.enabled = false;
         }
     }
 }

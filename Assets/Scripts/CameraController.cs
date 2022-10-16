@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CameraController
+namespace CameraMover
 {
     public class CameraController : MonoBehaviour
     {
@@ -20,7 +20,7 @@ namespace CameraController
 
         private void LateUpdate()
         {
-            if (isFixed)
+            if (!isFixed)
             {
                 if (!targetPosition) return;
                 if (!targetRotation) return;
@@ -47,6 +47,11 @@ namespace CameraController
         public void SetTargetRotation(Transform target)
         {
             this.targetRotation = target;
+        }
+
+        public void SetXRotate(float xRotate)
+        {
+            this.xRotate = xRotate;
         }
     }
 }

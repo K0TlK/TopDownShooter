@@ -12,7 +12,11 @@ namespace Bow
         {
             if (joystickArrow.Direction != Vector2.zero)
             {
-                Shoot();
+                ActiveBow();
+            }
+            else
+            {
+                DeactiveBow();
             }
         }
     }

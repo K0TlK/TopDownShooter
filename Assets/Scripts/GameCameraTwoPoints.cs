@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CameraController
+namespace CameraMover
 {
     public class GameCameraTwoPoints : MonoBehaviour
     {
